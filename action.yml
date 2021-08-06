@@ -1,0 +1,17 @@
+name: CI/CD temporary artifacts storage and retrieval on GCS
+description: Action for exchanging temporary artifacts between jobs using Google Cloud Storage buckets as staging area
+
+inputs:
+  name:
+    description: The name of the artifact, must be unique within the workflow
+    required: true
+  path:
+    description: Local file or directory to upload to GCS or download into from GCS
+    required: true
+  direction:
+    description: get for downloading or put for uploading (case insensitive)
+    required: true
+  
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

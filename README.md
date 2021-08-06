@@ -6,8 +6,9 @@ Convenience GitHub Actions action used for storing and retrieving staging artifa
 
 | Name | Mandatory | Default | Description |
 | - | - | - | - |
-| local_path | `true` | | The path to the local folder/file to store as artifact or the path to the local folder to retrieve remote artifacts into |
-| direction | `true` | | `put` for storing data to GCS, `get` for retrieving it
+| name | `true` | | The name of the artifact to be stored/retrieved |
+| direction | `true` | | `put` for storing data to GCS, `get` for retrieving it |
+| path | `true` | | The path to the local folder/file to store as artifact or the path to the local folder to retrieve remote artifacts into |
 
 The staging bucket name is provided via the `STAGING_GCLOUD_BUCKET` environment variable.
 
@@ -22,6 +23,8 @@ which then becomes
 ```
 ewogICJjbGllbnRfZW1haWwiOiAiYXJ0aWZhY3RzLXNhQHByb2plY3RfaWQuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iLAogICJwcml2YXRlX2tleSI6ICItLS0tLUJFR0lOIFJTQSBQUklWQVRFIEtFWS0tLS0tXG5NSUlFcFFJQkFBS0NBUUVBeDlqUkJWWi9iWGVKWVBTakRVTWpYQVkvcjd1MmxLVUpEemwxOXd1S0RIVFBjK05KXG5aQWpySTIxS01FQ1hZVkRLYnNFZVE1MVRsaksxS0NLU0RJVStQYkFocnBOYjBXZ2Y4dU9oaC9pU0o0L1dheXdTXG5waFJoajJTMWFYVUhjL3JOU1AwY2hPK2Z5SWtKUE84U1dZSHRVeThrNXhBc2pZSlRoT0s5WlkvMU9BV1B3SHY3XG5seVAxcHFRMFp5RHNRZjFaSHN5TDlrVWFmbThNcVdvYkJQWXpQZGI0UzY5ZmdSR0xQWm5oTkFnVW9jYWZrU1NUXG5XN2xKSEtNSG0wOXVDZURGZ0lSQ0drZVYvakNTN1NCTFVyVzdtSkhxMVhJZmxiTGlWdURWcFVveGc1dzB6YU5TXG5MMzVIZmFGTnRQeTd2NDE4a3IrVTRnWlZ2UHg4QlQ0ay82T1NzUUlEQVFBQkFvSUJBSEJJdTdmNkQ0S2J4UTQ2XG5wVm9RUE0rNW14TExyeHY1Vmd1OXh5L1V4ZTJWdS9GcTVKTldCM2RTTW5yRjc4ZjNzcVZqei9OQmMvTlI3a0xzXG5tWTU3VnFzbVNPWmpXUlZoSVlKQXIwTk1RQ0lHU1B6U09IQWp4MlRmdXFYVDRTb2k0akIrTmdYaTlLMmhnUlZCXG5aZGZ3amoxTW9ibEpkeDdTK01ZUzkwTVhEVG81dGNiL2xQTUY1bjVmMXROQ2NFWmdOU1MxaDd4NVlNUEtlN1R0XG55a0NjWG9jbEJ0UUZiQ2lldVdaUzBmZjJOTlRKWkQyd25QUEtQdHJYNC9hdUxmOXRwVGMzWFF6a1hkRmdCdktDXG5GU3h0dUpwMzNMaHZCTHB0YnhLSldPMjNqWGtQMTJ6NlFuRmNvVmoydFkweFJJNWE1MEZPeGVZUDZiVnRta0c3XG5uN242UDZFQ2dZRUEvb21uTzVPY04yY3R5QmkweTAwTXlmSmlUMkdnV3dGU09uSnRRYlNiemIvTklybEVHcjNXXG42emRVeWQ0SHZ5K3lmT20waEpjNm9FVzZVU2FuY1hYU3FMTEhFUHkwSzZkQVdPNGw0MlRLOVNDdlg4Q05TWUV2XG5LSmw0dXJ1b1FNSktsSVBMYUYzdmhmRG9YeHlDSDFjOEtvVWNFMWZQREFucG1pRHZtUEcxVEpVQ2dZRUF5UDY2XG4zQnh0Zm8vMGExMzVGWkFyTXVqRGg1eE1IRktPTUo0NzIxNTJTNXJvWVRJck1jRXFPelU1Z2FqMHFZVkhqOU9VXG5UWWZjbjRzbW4vZS92cjhwaXNVcmNNd2p6Nk1xU2x1d0QwRmQrQUp4UFVFNVYxUVYrcDZhMGNRdkRTRmtNdytqXG44UVljTFJkNk1MYWExSGxYUHlReEpTYXNYZ2hsNGNWeiszMWRDcTBDZ1lFQWxpNko2WER5bnczVnlWWXFkam1EXG43ak9CSmUwb1BBblBob1MxU2l0U01sZVVwWVJDVnJUajlleXpybGUrb21OMklKV1QyUmVSazdjUWM0a25DcDdHXG5LSnN6TVNhbzk0aTdRcjFneFlaVzZjTGJOdGZaaFNFZnZnaXZYeDRSN0FPM0ZXR2R4bnFHTkxVcnBkS2dRL1dvXG5uajNqanRZa1o2b0JsdHNRQTJHNTR2RUNnWUVBb1NwUUh3clVhWFY0b1ZiNjBXV0duZzJ5SzEwU1VtdUlCRWY4XG42d3UxZ3k0MVF5cDlKQ29sZU5CV3lqYjE1N0F0RDVDeUMvRHk0U01zMTN4S3plSnVwdzB1cGdXcWVXWDJGU1dyXG42SytiYjdCVnFLNVNFa29rVFk4N3lST3NQclVWcVRQVFd3SnhPVjduNVlPbVp0VGRObzRJc2lkdWN2Lzg0YW40XG5OQ0h6cHdrQ2dZRUE4aGMrTVdRc3NabUhPaXArUnArM21mcTdPZVROb0VuNjVYR0VjWTVMSlF5K25QckhvU0l4XG5QeDJxTlNianJyWUQ3NVpBakg5WG00RVRubkQ2ejlrTzJ1NVRqVFJRdUZPa1BROXFCQ2xMTWFnTHVBYUxlWStnXG4rTi83Zm8wOTROVXB2b0hEQ2liMldDVmNVUzN2WUNYZXVHN0JMU3dZclE1R0FDRXFDTVRwbWRvPVxuLS0tLS1FTkQgUlNBIFBSSVZBVEUgS0VZLS0tLS0iCn0K
 ```
+
+The STAGING_GCLOUD_CREDENTIALS` environment variable may be omitted if the workflow runs on a runner that's been granted a service account identity with proper permissions (i.e. if the runner is executing on a GCE instance with a proper service account).
 
 The project ID the bucket belongs to can be provided via the `STAGING_GCLOUD_PROJECT` environment variable, but as long as the bucket belongs to the same project as the service account there's no need to do so.
 
@@ -42,8 +45,9 @@ Upload:
         STAGING_GCLOUD_BUCKET: ${{ secrets.STAGING_GCLOUD_BUCKET }}
         STAGING_GCLOUD_CREDENTIALS: ${{ secrets.STAGING_GCLOUD_CREDENTIALS }}
       with:
+        name: my-artifact
         direction: put
-        local_path: target
+        path: target
 ...
 ```
 
@@ -55,7 +59,8 @@ Download:
         STAGING_GCLOUD_BUCKET: ${{ secrets.STAGING_GCLOUD_BUCKET }}
         STAGING_GCLOUD_CREDENTIALS: ${{ secrets.STAGING_GCLOUD_CREDENTIALS }}
       with:
+        name: my-artifact
         direction: get
-        local_path: target
+        path: target
 ...
 ```
