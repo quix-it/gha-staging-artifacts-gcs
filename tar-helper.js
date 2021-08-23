@@ -10,7 +10,7 @@ module.exports.pack = function (directory) {
       throw err
     } else {
       res.forEach((file) => {
-        const data = fs.readFileSync(file, "utf-8")
+        const data = fs.readFileSync(file)
         pack.entry({ name: path.relative(directory, file) }, data).end()
       })
       pack.finalize()
