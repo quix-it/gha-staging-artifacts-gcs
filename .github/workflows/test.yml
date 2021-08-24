@@ -1,0 +1,30 @@
+name: Testing
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '**'
+    tags:
+      - '**'
+
+jobs:
+
+  units:
+
+    runs-on: ubuntu-latest
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - run: npm ci
+
+    - name: Prepare ascii and binary test files
+      run: |
+        for i in {1..5}; do mkdir -p $SAMPLES/$i; done
+        find $SAMPLES -type d | while read d; do echo "This is directory $d" >$d/dir; done
+        zip -r $SAMPLES/source.zip $SAMPLES
+      env:
+        SAMPLES: .test/source
+
+    - run: npm test
