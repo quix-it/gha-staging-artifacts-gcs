@@ -24,7 +24,7 @@ runs:
           mkdir -p "/qstage/${{github.run_id}}/${{inputs.name}}"
           cp -r "${{inputs.path}}"/* "/qstage/${{github.run_id}}/${{inputs.name}}"
           ls -la /qstage/${{github.run_id}}/
-        elif [ "direction" = "get" ]; then
+        elif [ "$direction" = "get" ]; then
           echo "Retrieving artifacts from the runner volume"
           mkdir -p "${{inputs.path}}"
           cp -r "/qstage/${{github.run_id}}/${{inputs.name}}"/* "${{inputs.path}}"
