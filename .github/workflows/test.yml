@@ -38,6 +38,7 @@ jobs:
   
   get:
     runs-on: ["quix"]
+    needs: put
     steps:
       - name: Clean up workspace
         uses: quix-it/gha-clean-workspace@v2
