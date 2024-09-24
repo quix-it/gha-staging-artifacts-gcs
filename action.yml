@@ -23,7 +23,7 @@ runs:
           echo "Saving artifacts to the runner volume"
           mkdir -p "/qstage/${{github.run_id}}/${{inputs.name}}"
           cp -r "${{inputs.path}}"/* "/qstage/${{github.run_id}}/${{inputs.name}}"
-          ls -la /qstage/${{github.run_id}}/
+          ls -la /qstage/${{github.run_id}}/${{inputs.name}}
         elif [ "$direction" = "get" ]; then
           echo "Retrieving artifacts from the runner volume"
           mkdir -p "${{inputs.path}}"
