@@ -9,7 +9,7 @@ jobs:
 
   put:
 
-    runs-on: ["quix"]
+    runs-on: [ quix ]
     steps:
       - name: Clean up workspace
         uses: quix-it/gha-clean-workspace@v2
