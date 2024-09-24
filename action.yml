@@ -13,5 +13,21 @@ inputs:
     required: true
   
 runs:
-  using: 'node20'
-  main: 'dist/index.js'
+  using: 'composite'
+  steps:
+    - name: staging
+      shell: sh
+      run: | 
+        direction=$(echo "${{ inputs.direction }}" | tr '[:upper:]' '[:lower:]')
+        if [ "$direction" = "put" ]; then
+          echo "Saving artifacts to the container volume"
+          mkdir -p "/qstage/${{github.run_id}}/${{inputs.path}}"
+          cp -r "${{inputs.path}}"/* "/qstage/${{github.run_id}}/${{inputs.name}}"
+        elif [ "direction" = "get" ]; then
+          echo "Retrieving artifacts from the container volume"
+          mkdir -p "${{inputs.path}}"
+          cp -r "/qstage/${{github.run_id}}/${{inputs.name}}"/* "${{inputs.path}}"
+        else
+          echo "Invalid direction: ${{ inputs.direction }}. Use 'put' or 'get'."
+          exit 1
+        fi

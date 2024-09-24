@@ -1,30 +1,60 @@
 name: Testing
 
 on:
-  pull_request:
   push:
     branches:
-      - '**'
-    tags:
-      - '**'
+      - 'v3'
 
 jobs:
 
-  units:
+  put:
 
-    runs-on: ubuntu-latest
+    runs-on: ["quix"]
     steps:
+      - name: Clean up workspace
+        uses: quix-it/gha-clean-workspace@v2
 
-    - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - run: npm ci
+      - name: Prova put 
+        shell: bash
+        run: |
+          mkdir ./test-artifact/target
+          echo "ciao" > ./test-artifact/target/$(tr -dc A-Za-z0-9 </dev/urandom | head -c 13; echo).txt
+          ls -l /test-artifact/target
 
-    - name: Prepare ascii and binary test files
-      run: |
-        for i in {1..5}; do mkdir -p $SAMPLES/$i; done
-        find $SAMPLES -type d | while read d; do echo "This is directory $d" >$d/dir; done
-        zip -r $SAMPLES/source.zip $SAMPLES
-      env:
-        SAMPLES: .test/source
+      - name: prova action put
+        uses: ./
+        with: 
+          name: prova
+          destination: put
+          path: ./test-artifact
+    
+      
+      - name: check artifact in volume
+        run: | 
+          tree /qstage/
+  
+  get:
+    runs-on: ["quix"]
+    steps:
+      - name: Clean up workspace
+        uses: quix-it/gha-clean-workspace@v2
 
-    - run: npm test
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: prova action get
+        uses: ./
+        with: 
+          name: prova
+          destination: get
+          path: ./test-artifact/target
+
+      - name: check artifact in folder
+        run: | 
+          ls -la ./test-artifact/target
+
+
+
