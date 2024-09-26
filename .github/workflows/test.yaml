@@ -33,12 +33,7 @@ jobs:
           name: prova
           direction: put
           path: ./test-artifact
-    
-      
-      - name: check artifact in volume
-        run: | 
-          tree /tmp/
-  
+          
   get:
     runs-on: ["ubuntu-latest"]
     needs: 
