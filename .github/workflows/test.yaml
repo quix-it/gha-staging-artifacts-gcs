@@ -20,7 +20,6 @@ jobs:
       - name: Prova put 
         shell: bash
         run: |
-          mkdir -r $SAMPLES
           for i in {1..5}; do mkdir -p $SAMPLES/$i; done
           find $SAMPLES -type d | while read d; do echo "This is directory $d" >$d/dir; done
           zip -r $SAMPLES/source.zip $SAMPLES
