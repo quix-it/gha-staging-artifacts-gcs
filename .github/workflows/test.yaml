@@ -25,7 +25,7 @@ jobs:
           zip -r $SAMPLES/source.zip $SAMPLES
           ls -l $SAMPLES
         env:
-            SAMPLES: ./test-artifact/target
+            SAMPLES: ./test-artifact/
 
       - name: prova action put
         uses: ./
@@ -55,8 +55,8 @@ jobs:
         with: 
           name: prova
           direction: get
-          path: ./test-artifact/target
+          path: ./test-artifact
 
       - name: check artifact in folder
         run: | 
-          ls -la ./test-artifact/target
+          ls -la ./test-artifact
