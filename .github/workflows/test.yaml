@@ -9,7 +9,7 @@ jobs:
 
   put:
 
-    runs-on: ["quix"]
+    runs-on: ["quix-mdn"]
     steps:
       - name: Clean up workspace
         uses: quix-it/gha-clean-workspace@v2
@@ -41,7 +41,9 @@ jobs:
           tree /qstage/
   
   get:
-    runs-on: ["quix"]
+    runs-on: ["quix-mdn"]
+    needs: 
+        - put
     steps:
       - name: Clean up workspace
         uses: quix-it/gha-clean-workspace@v2
