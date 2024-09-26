@@ -34,6 +34,10 @@ jobs:
           direction: put
           path: ./test-artifact
 
+      - name: remove test-artifact
+        run: | 
+          rm -rf ./test-artifact
+
       - name: prova action get
         uses: ./
         with: 
