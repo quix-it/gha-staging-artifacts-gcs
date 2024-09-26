@@ -20,11 +20,11 @@ jobs:
       - name: Prova put 
         shell: bash
         run: |
-          mkdir ./test-artifact/target
+          mkdir -r $SAMPLES
           for i in {1..5}; do mkdir -p $SAMPLES/$i; done
           find $SAMPLES -type d | while read d; do echo "This is directory $d" >$d/dir; done
           zip -r $SAMPLES/source.zip $SAMPLES
-          ls -l /test-artifact/target
+          ls -l $SAMPLES
         env:
             SAMPLES: ./test-artifact/target
 
