@@ -21,12 +21,12 @@ runs:
         direction=$(echo "${{ inputs.direction }}" | tr '[:upper:]' '[:lower:]')
         if [ "$direction" = "put" ]; then
           echo "Saving artifacts to the runner volume"
-          mkdir -p "/qstage/${{github.run_id}}/${{inputs.name}}"
-          cp -r "${{inputs.path}}"/* "/qstage/${{github.run_id}}/${{inputs.name}}"
+          mkdir -p "/tmp/${{github.run_id}}/${{inputs.name}}"
+          cp -r "${{inputs.path}}"/* "/tmp/${{github.run_id}}/${{inputs.name}}"
         elif [ "$direction" = "get" ]; then
           echo "Retrieving artifacts from the runner volume"
           mkdir -p "${{inputs.path}}"
-          cp -r "/qstage/${{github.run_id}}/${{inputs.name}}"/* "${{inputs.path}}"
+          cp -r "/tmp/${{github.run_id}}/${{inputs.name}}"/* "${{inputs.path}}"
         else
           echo "Invalid direction: ${{ inputs.direction }}. Use 'put' or 'get'."
           exit 1
