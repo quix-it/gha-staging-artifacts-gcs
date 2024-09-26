@@ -31,7 +31,7 @@ jobs:
         uses: ./
         with: 
           name: prova
-          destination: put
+          direction: put
           path: ./test-artifact
     
       
@@ -54,7 +54,7 @@ jobs:
         uses: ./
         with: 
           name: prova
-          destination: get
+          direction: get
           path: ./test-artifact/target
 
       - name: check artifact in folder
