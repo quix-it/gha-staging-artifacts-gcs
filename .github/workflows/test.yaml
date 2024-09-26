@@ -7,7 +7,7 @@ on:
 
 jobs:
 
-  put:
+  put-get:
 
     runs-on: ["ubuntu-latest"]
     steps:
@@ -33,17 +33,6 @@ jobs:
           name: prova
           direction: put
           path: ./test-artifact
-          
-  get:
-    runs-on: ["ubuntu-latest"]
-    needs: 
-        - put
-    steps:
-      - name: Clean up workspace
-        uses: quix-it/gha-clean-workspace@v2
-
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: prova action get
         uses: ./
