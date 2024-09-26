@@ -37,7 +37,7 @@ jobs:
       
       - name: check artifact in volume
         run: | 
-          tree /qstage/
+          tree /tmp/
   
   get:
     runs-on: ["ubuntu-latest"]
