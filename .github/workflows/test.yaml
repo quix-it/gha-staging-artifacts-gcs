@@ -1,0 +1,61 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - 'v3'
+
+jobs:
+
+  put:
+
+    runs-on: ["quix"]
+    steps:
+      - name: Clean up workspace
+        uses: quix-it/gha-clean-workspace@v2
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prova put 
+        shell: bash
+        run: |
+          mkdir ./test-artifact/target
+          for i in {1..5}; do mkdir -p $SAMPLES/$i; done
+          find $SAMPLES -type d | while read d; do echo "This is directory $d" >$d/dir; done
+          zip -r $SAMPLES/source.zip $SAMPLES
+          ls -l /test-artifact/target
+        env:
+            SAMPLES: ./test-artifact/target
+
+      - name: prova action put
+        uses: ./
+        with: 
+          name: prova
+          destination: put
+          path: ./test-artifact
+    
+      
+      - name: check artifact in volume
+        run: | 
+          tree /qstage/
+  
+  get:
+    runs-on: ["quix"]
+    steps:
+      - name: Clean up workspace
+        uses: quix-it/gha-clean-workspace@v2
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: prova action get
+        uses: ./
+        with: 
+          name: prova
+          destination: get
+          path: ./test-artifact/target
+
+      - name: check artifact in folder
+        run: | 
+          ls -la ./test-artifact/target

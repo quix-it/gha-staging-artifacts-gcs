@@ -26,7 +26,6 @@ runs:
         elif [ "$direction" = "get" ]; then
           echo "Retrieving artifacts from the runner volume"
           mkdir -p "${{inputs.path}}"
-          echo "ciao" >> "/qstage/${{github.run_id}}/${{inputs.name}}"/test.mio
           cp -r "/qstage/${{github.run_id}}/${{inputs.name}}"/* "${{inputs.path}}"
         else
           echo "Invalid direction: ${{ inputs.direction }}. Use 'put' or 'get'."
